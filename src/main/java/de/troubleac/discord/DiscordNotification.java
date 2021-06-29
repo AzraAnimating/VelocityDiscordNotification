@@ -14,7 +14,10 @@ import com.velocitypowered.api.event.proxy.ProxyInitializeEvent;
 import com.velocitypowered.api.plugin.Plugin;
 import com.velocitypowered.api.plugin.annotation.DataDirectory;
 import com.velocitypowered.api.proxy.ProxyServer;
+import de.troubleac.discord.listener.ConnectionListener;
+import de.troubleac.discord.listener.PlayerChatListener;
 import de.troubleac.discord.util.ConfigExtractor;
+import org.jline.utils.Log;
 import org.spongepowered.configurate.ConfigurateException;
 import org.spongepowered.configurate.ConfigurationNode;
 import org.spongepowered.configurate.yaml.YamlConfigurationLoader;
@@ -54,6 +57,8 @@ public class DiscordNotification {
 
 
        // server.getEventManager().register(this, this);
+        server.getEventManager().register(this, new PlayerChatListener(this));
+        server.getEventManager().register(this, new ConnectionListener(this));
     }
 
     public void reloadConfig() {
