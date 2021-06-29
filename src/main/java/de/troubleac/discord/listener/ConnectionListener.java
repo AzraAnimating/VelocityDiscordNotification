@@ -27,7 +27,7 @@ import java.io.IOException;
     public void onConnectedEvent(ServerConnectedEvent event) throws IOException {
         DiscordWebhook webhook = new DiscordWebhook(plugin.getConfig().node("WebhookURL").getString());
         webhook.addEmbed(new DiscordWebhook.EmbedObject()
-                .setTitle("The player " + event.getPlayer().getUsername() + "has connected to the " + event.getServer()  + " server!")
+                .setTitle("The player " + event.getPlayer().getUsername() + " has connected to the " + event.getServer().getServerInfo().getName()  + " server!")
                 .setImage("https://cravatar.eu/helmavatar/" + event.getPlayer().getUsername() + "/190.png")
                 .setColor(Color.cyan));
         if (plugin.getConfig().node("UseSwitch").getBoolean()) {
